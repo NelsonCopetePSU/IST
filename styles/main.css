@@ -1,0 +1,647 @@
+/*
+Name: Nelson Antonio Copete
+Student ID: ____________________
+Course: ________________________
+Assignment: CSS Enhanced HTML5 Portfolio (Assignment 2)
+Submission Date: February 1, 2026
+Stylesheet Purpose: Primary external stylesheet for portfolio layout, design system, responsive behavior, forms, tables, and interactions.
+GitHub Repo URL: ____________________
+GitHub Pages URL: ____________________
+
+TABLE OF CONTENTS
+1) Reset / Normalization
+2) Design System (CSS Custom Properties)
+3) Base Elements (Typography / Links / Media)
+4) Layout (Grid + Containers)
+5) Header
+6) Navigation (Flexbox)
+7) Panels / Cards / Components
+8) Tables
+9) Forms
+10) Utilities
+11) Transitions + Animations (Keyframes)
+12) Responsive Breakpoints
+13) Reduced Motion
+*/
+
+/* =========================================================
+   1) Reset / Normalization
+   ========================================================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box; /* universal border-box requirement */
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* =========================================================
+   2) Design System (CSS Custom Properties)
+   ========================================================= */
+:root {
+  /* Color palette */
+  --c-primary: #1e3a8a;          /* deep blue */
+  --c-primary-2: #0b1220;        /* dark navy */
+  --c-accent: #60a5fa;           /* light blue */
+  --c-neutral-0: #ffffff;
+  --c-neutral-1: rgba(255, 255, 255, 0.92);
+  --c-neutral-2: rgba(255, 255, 255, 0.78);
+  --c-surface: rgba(255, 255, 255, 0.08);
+  --c-border: rgba(255, 255, 255, 0.14);
+
+  /* Semantic colors */
+  --c-success: #22c55e;
+  --c-warning: #f59e0b;
+  --c-danger: #ef4444;
+  --c-info: #38bdf8;
+
+  /* Typography */
+  --ff-base: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  --ff-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  --fs-xs: 0.875rem;
+  --fs-sm: 0.95rem;
+  --fs-md: 1rem;
+  --fs-lg: 1.15rem;
+  --fs-xl: 1.5rem;
+  --fs-2xl: 2rem;
+
+  --fw-regular: 400;
+  --fw-medium: 600;
+  --fw-bold: 800;
+
+  /* Spacing scale */
+  --sp-1: 0.5rem;
+  --sp-2: 0.75rem;
+  --sp-3: 1rem;
+  --sp-4: 1.5rem;
+  --sp-5: 2rem;
+  --sp-6: 3rem;
+
+  /* Radius */
+  --r-sm: 10px;
+  --r-md: 14px;
+  --r-lg: 18px;
+  --r-round: 999px;
+
+  /* Shadows */
+  --shadow-1: 0 10px 30px rgba(0,0,0,0.25);
+  --shadow-2: 0 18px 50px rgba(0,0,0,0.35);
+
+  /* Transitions */
+  --t-fast: 160ms;
+  --t-med: 240ms;
+  --ease: cubic-bezier(.2,.8,.2,1);
+
+  /* Layout widths */
+  --maxw: 1100px;
+
+  /* Z-index */
+  --z-skip: 50;
+}
+
+/* =========================================================
+   3) Base Elements (Typography / Links / Media)
+   ========================================================= */
+body {
+  font-family: var(--ff-base);
+  color: var(--c-neutral-1);
+  background: linear-gradient(135deg, var(--c-primary) 0%, var(--c-primary-2) 70%);
+  line-height: 1.55;
+}
+
+h1, h2, h3 {
+  line-height: 1.2;
+  margin: 0 0 var(--sp-2);
+}
+
+h1 { font-size: var(--fs-2xl); font-weight: var(--fw-bold); }
+h2 { font-size: var(--fs-xl); font-weight: var(--fw-bold); }
+h3 { font-size: var(--fs-lg); font-weight: var(--fw-medium); }
+
+p { margin: 0 0 var(--sp-3); }
+
+code {
+  font-family: var(--ff-mono);
+  font-size: 0.95em;
+  padding: 0.12em 0.35em;
+  border-radius: 8px;
+  background: rgba(0,0,0,0.25);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+a {
+  color: var(--c-neutral-0);
+  text-decoration-color: rgba(255,255,255,0.45);
+  text-underline-offset: 4px;
+  transition: transform var(--t-fast) var(--ease), opacity var(--t-fast) var(--ease);
+}
+
+a:hover { opacity: 0.9; }
+a:active { transform: translateY(1px); }
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgba(96, 165, 250, 0.85);
+  outline-offset: 3px;
+}
+
+/* Attribute selector example: target external links */
+a[target="_blank"]::after {
+  content: " ↗";
+  font-size: 0.9em;
+  opacity: 0.85;
+}
+
+/* Pseudo-element example */
+.panel-title::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 3px;
+  margin-top: var(--sp-1);
+  border-radius: var(--r-round);
+  background: linear-gradient(90deg, var(--c-accent), rgba(96,165,250,0));
+}
+
+/* =========================================================
+   4) Layout (Grid + Containers)
+   ========================================================= */
+.site {
+  width: min(var(--maxw), calc(100% - 2 * var(--sp-4)));
+  margin: 0 auto;
+  padding: var(--sp-5) 0 var(--sp-6);
+  display: grid;
+  gap: var(--sp-4);
+
+  /* Grid layout: header, nav, main, aside, footer */
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "header"
+    "nav"
+    "main"
+    "aside"
+    "footer";
+}
+
+.site-header { grid-area: header; }
+.site-nav    { grid-area: nav; }
+.site-main   { grid-area: main; }
+.site-aside  { grid-area: aside; }
+.site-footer { grid-area: footer; }
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 10px;
+  z-index: var(--z-skip);
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: var(--r-round);
+  background: rgba(0,0,0,0.65);
+  border: 1px solid var(--c-border);
+}
+.skip-link:focus { left: 12px; }
+
+/* =========================================================
+   5) Header
+   ========================================================= */
+.site-header {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-1);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Keyframe animation usage target (subtle moving shine) */
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 10%, rgba(96,165,250,0.22), transparent 45%);
+  animation: floatGlow 7s var(--ease) infinite alternate;
+  pointer-events: none;
+}
+
+.header-inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-3);
+  padding: var(--sp-4);
+  position: relative;
+}
+
+.site-lead {
+  font-size: var(--fs-md);
+  color: var(--c-neutral-2);
+  margin-bottom: 0;
+}
+
+.profile-photo {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: var(--shadow-2);
+  filter: contrast(1.03) saturate(1.05);
+}
+
+/* =========================================================
+   6) Navigation (Flexbox)
+   ========================================================= */
+.site-nav {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-1);
+}
+
+.nav-list {
+  list-style: none;
+  margin: 0;
+  padding: var(--sp-2);
+  display: flex;              /* Flexbox requirement */
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  justify-content: center;
+}
+
+.nav-link {
+  display: inline-block;
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: var(--r-round);
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(0,0,0,0.15);
+  transition: transform var(--t-med) var(--ease), background var(--t-med) var(--ease), border-color var(--t-med) var(--ease);
+}
+
+.nav-link:hover {
+  transform: translateY(-2px);
+  background: rgba(96,165,250,0.14);
+  border-color: rgba(96,165,250,0.35);
+}
+
+.nav-link:visited {
+  opacity: 0.95;
+}
+
+/* =========================================================
+   7) Panels / Cards / Components
+   ========================================================= */
+.panel {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-1);
+  padding: var(--sp-4);
+}
+
+/* Descendant selector example */
+.panel p a { text-decoration-thickness: 2px; }
+
+/* Facts list */
+.facts {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-2);
+  margin: var(--sp-3) 0 var(--sp-4);
+}
+.facts dt {
+  font-weight: var(--fw-medium);
+  color: var(--c-neutral-1);
+}
+.facts dd {
+  margin: 0 0 var(--sp-2);
+  color: var(--c-neutral-2);
+}
+
+/* Skills pills */
+.pill-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--sp-3);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+.pill {
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--r-round);
+  background: rgba(0,0,0,0.18);
+  border: 1px solid rgba(255,255,255,0.14);
+}
+
+/* Details */
+.details summary {
+  cursor: pointer;
+  font-weight: var(--fw-medium);
+}
+.details[open] summary {
+  color: var(--c-accent);
+}
+
+/* Projects media */
+.media-card {
+  margin: 0 0 var(--sp-4);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  border: 1px solid var(--c-border);
+  background: rgba(0,0,0,0.12);
+}
+.media-img { width: 100%; }
+.media-caption {
+  padding: var(--sp-2) var(--sp-3);
+  color: var(--c-neutral-2);
+  font-size: var(--fs-sm);
+}
+
+/* Card grid (CSS Grid requirement) */
+.cards {
+  display: grid; /* Grid requirement */
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-3);
+}
+
+.card {
+  border-radius: var(--r-md);
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(0,0,0,0.12);
+  padding: var(--sp-3);
+  transition: transform var(--t-med) var(--ease), border-color var(--t-med) var(--ease);
+}
+
+/* Hover/focus transitions */
+.card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(96,165,250,0.35);
+}
+
+.steps {
+  margin: 0 0 var(--sp-3);
+  padding-left: 1.25rem;
+}
+
+/* Blockquote styling */
+.quote {
+  margin: var(--sp-3) 0 0;
+  padding: var(--sp-3);
+  border-left: 4px solid rgba(96,165,250,0.55);
+  background: rgba(96,165,250,0.10);
+  border-radius: var(--r-sm);
+}
+.quote p { margin: 0; }
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 0.7rem 1rem;
+  border-radius: var(--r-round);
+  border: 1px solid rgba(96,165,250,0.55);
+  background: rgba(96,165,250,0.18);
+  color: var(--c-neutral-0);
+  cursor: pointer;
+  font-weight: var(--fw-medium);
+  transition: transform var(--t-fast) var(--ease), background var(--t-fast) var(--ease);
+}
+.btn:hover { transform: translateY(-1px); background: rgba(96,165,250,0.26); }
+.btn:active { transform: translateY(1px); }
+
+.btn-ghost {
+  background: rgba(0,0,0,0.12);
+  border-color: rgba(255,255,255,0.18);
+}
+
+/* Child selector example: only direct li children */
+.link-list > li {
+  margin-bottom: var(--sp-2);
+}
+
+/* Adjacent sibling selector example */
+.panel-title + p {
+  margin-top: var(--sp-2);
+}
+
+/* =========================================================
+   8) Tables
+   ========================================================= */
+.table-wrap {
+  overflow-x: auto; /* responsive table requirement */
+  border-radius: var(--r-md);
+  border: 1px solid rgba(255,255,255,0.14);
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 540px;
+  background: rgba(0,0,0,0.10);
+}
+
+.data-table caption {
+  text-align: left;
+  padding: var(--sp-2) var(--sp-3);
+  font-weight: var(--fw-bold);
+  color: var(--c-neutral-1);
+}
+
+.data-table th,
+.data-table td {
+  padding: var(--sp-2) var(--sp-3);
+  border-top: 1px solid rgba(255,255,255,0.10);
+  vertical-align: top;
+}
+
+/* nth-child requirement (striping) */
+.data-table tbody tr:nth-child(odd) {
+  background: rgba(255,255,255,0.04);
+}
+
+/* hover effect */
+.data-table tbody tr:hover {
+  background: rgba(96,165,250,0.10);
+}
+
+/* right-align example: you could apply to numeric cells later with a class */
+.data-table td { color: var(--c-neutral-2); }
+
+/* =========================================================
+   9) Forms
+   ========================================================= */
+.contact-form {
+  margin-top: var(--sp-3);
+}
+
+.form-fieldset {
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: var(--r-lg);
+  padding: var(--sp-4);
+  background: rgba(0,0,0,0.12);
+}
+
+.form-legend {
+  padding: 0 var(--sp-2);
+  font-weight: var(--fw-bold);
+}
+
+.form-label {
+  display: block;
+  margin-top: var(--sp-3);
+  margin-bottom: var(--sp-1);
+  font-weight: var(--fw-medium);
+}
+
+/* Attribute selectors for input types */
+input[type="text"],
+input[type="email"],
+select,
+textarea {
+  width: min(680px, 100%);
+  padding: 0.75rem 0.9rem;
+  border-radius: var(--r-md);
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(0,0,0,0.20);
+  color: var(--c-neutral-0);
+  transition: border-color var(--t-fast) var(--ease), transform var(--t-fast) var(--ease);
+}
+
+textarea { resize: vertical; }
+
+::placeholder {
+  color: rgba(255,255,255,0.55);
+}
+
+/* input states */
+input:hover,
+select:hover,
+textarea:hover {
+  border-color: rgba(96,165,250,0.35);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: rgba(96,165,250,0.65);
+}
+
+input:valid,
+textarea:valid,
+select:valid {
+  border-color: rgba(34,197,94,0.35); /* success */
+}
+
+input:invalid:focus,
+textarea:invalid:focus,
+select:invalid:focus {
+  border-color: rgba(239,68,68,0.55); /* danger */
+}
+
+.form-actions {
+  display: flex;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+  margin-top: var(--sp-4);
+}
+
+/* =========================================================
+   10) Utilities
+   ========================================================= */
+.small {
+  font-size: var(--fs-sm);
+  color: var(--c-neutral-2);
+}
+
+.sep {
+  margin: 0 var(--sp-2);
+  color: rgba(255,255,255,0.55);
+}
+
+.resource-line {
+  margin-bottom: 0;
+}
+
+/* =========================================================
+   11) Transitions + Animations (Keyframes)
+   ========================================================= */
+@keyframes floatGlow {
+  0%   { transform: translateY(0); opacity: 0.85; }
+  100% { transform: translateY(8px); opacity: 1; }
+}
+
+@keyframes popIn {
+  0%   { transform: translateY(8px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* Apply the second keyframe animation to panels as they load */
+.panel {
+  animation: popIn 420ms var(--ease) both;
+}
+
+/* =========================================================
+   12) Responsive Breakpoints (mobile-first)
+   ========================================================= */
+@media (min-width: 768px) {
+  .header-inner {
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: center;
+  }
+
+  .facts {
+    grid-template-columns: 1fr 1fr;
+    column-gap: var(--sp-4);
+  }
+}
+
+@media (min-width: 1024px) {
+  .site {
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas:
+      "header header"
+      "nav nav"
+      "main aside"
+      "footer footer";
+    align-items: start;
+  }
+
+  .site-aside {
+    position: sticky;
+    top: var(--sp-4);
+    align-self: start;
+  }
+}
+
+@media (min-width: 1200px) {
+  h1 { font-size: 2.2rem; }
+  .panel { padding: var(--sp-5); }
+}
+
+/* =========================================================
+   13) Reduced Motion
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+}
