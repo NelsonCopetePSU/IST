@@ -1,0 +1,310 @@
+<!--
+Name: Nelson Antonio Copete
+Student ID: ____________________
+Course: ________________________
+Assignment: HTML5 Portfolio / Profile Page
+Submission Date: January 22, 2026
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Nelson Antonio Copete | Student Portfolio Profile Page</title>
+
+  <meta name="description" content="A simple HTML5 portfolio page for Nelson Antonio Copete showcasing skills, projects, education, and a contact form." />
+  <meta name="author" content="Nelson Antonio Copete" />
+  <meta name="keywords" content="portfolio, student, HTML5, cybersecurity, projects, contact" />
+
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.5; margin: 0; padding: 0; }
+    header, nav, main, aside, footer { padding: 16px; }
+    header { border-bottom: 2px solid #ddd; }
+    nav { border-bottom: 1px solid #ddd; }
+    nav ul { list-style: none; padding-left: 0; display: flex; gap: 12px; flex-wrap: wrap; }
+    nav a { text-decoration: none; border-bottom: 1px dotted #333; color: #111; }
+    nav a:focus { outline: 2px solid #000; outline-offset: 2px; }
+
+    main { max-width: 900px; }
+    section { margin: 18px 0; padding: 12px; border: 1px solid #ddd; }
+    article { margin: 12px 0; padding: 12px; border: 1px dashed #bbb; }
+
+    figure { margin: 12px 0; }
+    figcaption { font-size: 0.95rem; color: #333; }
+
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th, td { border: 1px solid #bbb; padding: 8px; text-align: left; }
+    caption { text-align: left; font-weight: bold; margin-bottom: 6px; }
+
+    aside { background: #f7f7f7; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; }
+    footer { font-size: 0.95rem; color: #222; }
+
+    label { display: block; margin-top: 10px; }
+    input, textarea, select { width: 100%; max-width: 520px; padding: 8px; }
+    fieldset { border: 1px solid #bbb; padding: 12px; max-width: 560px; }
+    legend { padding: 0 6px; }
+    .small { font-size: 0.9rem; color: #444; }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header id="top">
+    <h1>Nelson Antonio Copete</h1>
+
+    <p>
+      <strong>Student</strong> interested in <em>cybersecurity</em> and building practical skills.
+      This is my <mark>intro</mark> to my portfolio page.
+    </p>
+
+    <img
+  src="images/me.jpg"
+  alt="Photo of Nelson Antonio Copete wearing a navy blue suit with a white rose boutonniere"
+  width="300"
+  height="300"
+/>
+
+    
+    </p>
+  </header>
+
+  <!-- Navigation -->
+  <nav aria-label="Primary">
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#extras">Extras</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main -->
+  <main>
+    <section id="about">
+      <h2>About Me</h2>
+
+      <p>
+        Hi, I’m Nelson. I’m currently a student at Penn State Lehigh Valley and I am learning web basics and learning how to 
+        structure pages with HTML. I like being able to understand the way things are made and the steps to how it got there.
+        HTML is very organized and understanding the organization process is key to success.
+      </p>
+
+      <p>
+        I’m focused on improving my understanding of networks, security concepts, and how to explain technical work clearly.
+      </p>
+
+      <dl>
+        <dt>Major interest</dt>
+        <dd>Cybersecurity </dd>
+
+        <dt>Location</dt>
+        <dd>Pennsylvania, US </dd>
+
+        <dt>Current focus</dt>
+        <dd>HTML structure and understanding the basics</dd>
+      </dl>
+
+      <p>
+        Learning what <abbr title="HyperText Markup Language">HTML</abbr> elements actually mean.
+      </p>
+
+      <p>
+      </p>
+    </section>
+
+    <section id="skills">
+      <h2>My Skills</h2>
+
+      <ul>
+        <li>HTML structure and organization</li>
+        <li>Problem solving</li>
+        <li>Networking fundamentals</li>
+        <li>Leadership</li>
+      </ul>
+
+      <details>
+        <summary>More details</summary>
+        <p>
+          I’m practicing elements like <code>header</code>, <code>nav</code>, and <code>section</code>.
+        </p>
+        <p>
+          Example: 2<sup>3</sup> = 8 | H<sub>2</sub>O
+        </p>
+      </details>
+
+      <table>
+        <caption>Skills and confidence level</caption>
+        <thead>
+          <tr>
+            <th scope="col">Skill</th>
+            <th scope="col">Level</th>
+            <th scope="col">Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">HTML</th>
+            <td>Beginner</td>
+            <td>Learning structure</td>
+          </tr>
+          <tr>
+            <th scope="row">Web Creation</th>
+            <td>Beginner</td>
+            <td>Working on creativity</td>
+          </tr>
+          <tr>
+            <th scope="row">Networking</th>
+            <td>Intermediate</td>
+            <td>IP and troubleshooting</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="3">My levels will be updated when I feel more comfortable with the material.</td>
+          </tr>
+        </tfoot>
+      </table>
+    </section>
+
+    <section id="projects">
+      <h2>My Projects</h2>
+
+      <figure>
+  <img
+    src="images/ps.jpg"
+    alt="Penn State Nittany Lion logo in white on a blue background"
+    width="600"
+    height="420"
+    loading="lazy"
+  />
+  <figcaption>
+    Penn State Nittany Lion logo – representing my university.
+  </figcaption>
+</figure>
+
+      <article>
+        <h3>Project 1: Portfolio Page</h3>
+        <p>
+          This page combines semantic HTML, tables, images, and my Resume available for download.
+        </p>
+      </article>
+
+      <article>
+        <h3>Project 2: Network Notes</h3>
+        <p>
+          I document lab steps and solutions clearly:
+        </p>
+        <ol>
+          <li>Find the problem</li>
+          <li>Check settings</li>
+          <li>Test connections</li>
+          <li>Write results</li>
+        </ol>
+
+        <blockquote cite="https://developer.mozilla.org/">
+          <p>Good documentation helps learning.</p>
+        </blockquote>
+      </article>
+
+      <p>
+        Helpful resource:
+        <a href="https://developer.mozilla.org/" target="_blank" rel="noopener noreferrer">MDN Web Docs</a>
+      </p>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+
+      <p>
+        Email:
+        <a href="mailto:nac5937@psu.com">nac5937@psu.com</a>
+        | Phone:
+        <a href="tel:+19293184538">+1 (929) 318-4538</a>
+      </p>
+
+      <p>
+        <a href="Resume.pdf" download>Download Resume (PDF)</a>
+      </p>
+
+      <form action="https://example.com/submit" method="post" aria-label="Contact form">
+        <fieldset>
+          <legend>Send a message</legend>
+
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required />
+
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+
+          <label for="topic">Topic</label>
+          <select id="topic" name="topic" required>
+            <option value="">Choose one</option>
+            <option value="project">Project</option>
+            <option value="school">School</option>
+            <option value="other">Other</option>
+          </select>
+
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+
+          <label>
+          </label>
+
+          <p class="small">
+            <q cite="https://www.w3.org/WAI/">Accessibility helps everyone.</q>
+          </p>
+
+          <button type="submit">Send</button>
+          <button type="reset">Clear</button>
+        </fieldset>
+      </form>
+    </section>
+
+    <section id="extras">
+      <h2>Extras</h2>
+
+      <ul>
+        <li>
+          <a href="https://validator.w3.org/" target="_blank" rel="noopener noreferrer">
+            W3C Validator
+          </a>
+        </li>
+        <li>
+          <a href="https://www.w3.org/WAI/" target="_blank" rel="noopener noreferrer">
+            Accessibility Guide
+          </a>
+        </li>
+      </ul>
+
+      <p class="small">
+      </p>
+    </section>
+  </main>
+
+  <aside aria-label="Supplementary info">
+    <h2>Quick Facts</h2>
+    <ul>
+      <li>Goal: Clean and accessible pages that are easy on the eyes of the user</li>
+      <li>Interest: Cybersecurity and Basic Coding</li>
+      <li>Reminder: Standing out doesn't mean being better than others it means you want it more.</li>
+    </ul>
+  </aside>
+
+  <footer>
+    <p>&copy; <time datetime="2026">2026</time> Nelson Antonio Copete</p>
+
+    <p>
+      <a href="mailto:nac5937@psu.com">nac5937@psu.com</a>
+      | <a href="tel:+19293184538">+1 (929) 318-4538</a>
+    </p>
+
+    <p>
+      Last updated:
+      <time datetime="2026-01-22">January 25, 2026</time>
+      | <a href="#top">Back to top</a>
+    </p>
+  </footer>
+</body>
+</html>
