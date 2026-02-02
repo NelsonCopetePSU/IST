@@ -1,7 +1,5 @@
 # Nelson Antonio Copete – Portfolio Website
-
-Student ID: ____________________  
-Course: ____________________  
+ 
 Assignment: CSS Enhanced HTML5 Portfolio (Assignment 2)
 
 ## Description
