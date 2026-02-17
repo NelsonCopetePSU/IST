@@ -645,3 +645,49 @@ select:invalid:focus {
     scroll-behavior: auto !important;
   }
 }
+/* =========================================================
+   DOM Additions (basic + keeps your colors)
+   ========================================================= */
+
+/* Make section titles feel clickable */
+.panel-title { cursor: pointer; }
+
+/* Collapsed state: JS toggles this class on the section */
+.panel.is-collapsed > :not(.panel-title) { display: none; }
+
+/* Small caret indicator (does not change your colors) */
+.panel-title::before { content: "▾ "; opacity: 0.85; }
+.panel.is-collapsed .panel-title::before { content: "▸ "; }
+
+/* Active nav link highlight */
+.nav-link.is-active {
+  background: rgba(96,165,250,0.18);
+  border-color: rgba(96,165,250,0.35);
+}
+
+/* Form status message */
+.form-status {
+  margin-top: var(--sp-3);
+  color: var(--c-neutral-2);
+}
+
+/* Back-to-top button */
+.back-to-top {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 60;
+
+  display: none; /* JS shows it */
+  padding: 0.65rem 0.95rem;
+  border-radius: var(--r-round);
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(0,0,0,0.55);
+  color: var(--c-neutral-0);
+  cursor: pointer;
+
+  box-shadow: var(--shadow-1);
+}
+
+.back-to-top:hover { transform: translateY(-1px); }
+.back-to-top:active { transform: translateY(1px); }
