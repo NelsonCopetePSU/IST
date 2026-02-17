@@ -10,20 +10,22 @@ GitHub Pages URL: ____________________
 
 (() => {
   "use strict";
-
-  // 1) Collapsible panels (click the existing H2 title)
+  // 1) Smooth scroll for nav links
   const panels = document.querySelectorAll("section.panel");
+
   panels.forEach((panel) => {
     const title = panel.querySelector(".panel-title");
-    if (!title) return;
+    const content = panel.querySelector(".panel-content");
 
-    // Make the title act like a button (keyboard accessible)
+    if (!title || !content) return;
     title.setAttribute("role", "button");
     title.setAttribute("tabindex", "0");
     title.setAttribute("aria-expanded", "true");
 
     const togglePanel = () => {
       const collapsed = panel.classList.toggle("is-collapsed");
+
+      content.style.display = collapsed ? "none" : "block";
       title.setAttribute("aria-expanded", String(!collapsed));
     };
 
@@ -36,20 +38,8 @@ GitHub Pages URL: ____________________
       }
     });
   });
+ })();
 
-  // 2) Smooth scroll nav (DOM click behavior)
-  const navLinks = document.querySelectorAll(".site-nav .nav-link[href^='#']");
-  navLinks.forEach((link) => {
-    link.addEventListener("click", (e) => {
-      const hash = link.getAttribute("href");
-      const target = hash ? document.querySelector(hash) : null;
-      if (!target) return;
-
-      e.preventDefault();
-      target.scrollIntoView({ behavior: "smooth", block: "start" });
-      history.pushState(null, "", hash);
-    });
-  });
 
   // 3) Active nav highlight on scroll
   const linkMap = new Map();
