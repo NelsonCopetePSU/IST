@@ -85,89 +85,203 @@ GitHub Pages URL: ____________________
     <!-- Main -->
     <main id="main" class="site-main">
       <section id="about" class="panel">
-        <h2 class="panel-title">About Me</h2>
+  <h2 class="panel-title">About Me</h2>
 
-        <p>
-          Hi, I’m Nelson. I’m currently a student at Penn State Lehigh Valley and I am learning web basics and learning how to
-          structure pages with HTML. I like being able to understand the way things are made and the steps to how it got there.
-          HTML is very organized and understanding the organization process is key to success.
-        </p>
+  <div class="accordion" id="aboutAccordion">
+    <div class="accordion-item bg-dark text-light border-0">
+      <h3 class="accordion-header" id="aboutHeading">
+        <button
+          class="accordion-button collapsed bg-dark text-light"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#aboutCollapse"
+          aria-expanded="false"
+          aria-controls="aboutCollapse"
+        >
+          View About Content
+        </button>
+      </h3>
 
-        <p>
-          I’m focused on improving my understanding of networks, security concepts, and how to explain technical work clearly.
-        </p>
+      <div
+        id="aboutCollapse"
+        class="accordion-collapse collapse"
+        aria-labelledby="aboutHeading"
+        data-bs-parent="#aboutAccordion"
+      >
+        <div class="accordion-body">
 
-        <dl class="facts">
-          <dt>Major interest</dt>
-          <dd>Cybersecurity</dd>
+          <p>
+            Hi, I’m Nelson. I’m currently a student at Penn State Lehigh Valley and I am learning web basics and learning how to
+            structure pages with HTML. I like being able to understand the way things are made and the steps to how it got there.
+            HTML is very organized and understanding the organization process is key to success.
+          </p>
 
-          <dt>Location</dt>
-          <dd>Pennsylvania, US</dd>
+          <p>
+            I’m focused on improving my understanding of networks, security concepts, and how to explain technical work clearly.
+          </p>
 
-          <dt>Current focus</dt>
-          <dd>HTML structure and understanding the basics</dd>
-        </dl>
+          <dl class="facts">
+            <dt>Major interest</dt>
+            <dd>Cybersecurity</dd>
 
-        <p>
-          Learning what <abbr title="HyperText Markup Language">HTML</abbr> elements actually mean.
-        </p>
-      </section>
+            <dt>Location</dt>
+            <dd>Pennsylvania, US</dd>
+
+            <dt>Current focus</dt>
+            <dd>HTML structure and understanding the basics</dd>
+          </dl>
+
+          <p>
+            Learning what <abbr title="HyperText Markup Language">HTML</abbr> elements actually mean.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+ </section>
 
       <section id="skills" class="panel">
-        <h2 class="panel-title">My Skills</h2>
+  <h2 class="panel-title">My Skills</h2>
 
-        <ul class="pill-list">
-          <li class="pill">HTML structure and organization</li>
-          <li class="pill">Problem solving</li>
-          <li class="pill">Networking fundamentals</li>
-          <li class="pill">Leadership</li>
-        </ul>
+  <div class="accordion" id="skillsAccordion">
 
-        <details class="details">
-          <summary>More details</summary>
-          <p>
-            I’m practicing elements like <code>header</code>, <code>nav</code>, and <code>section</code>.
-          </p>
-          <p>
-            Example: 2<sup>3</sup> = 8 | H<sub>2</sub>O
-          </p>
-        </details>
+    <!-- Skills List -->
+    <div class="accordion-item bg-dark text-light border-0">
+      <h3 class="accordion-header" id="skillsHeadingOne">
+        <button
+          class="accordion-button collapsed bg-dark text-light"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#skillsCollapseOne"
+          aria-expanded="false"
+          aria-controls="skillsCollapseOne"
+        >
+          Skills List
+        </button>
+      </h3>
 
-        <div class="table-wrap" aria-label="Skills table container">
-          <table class="data-table">
-            <caption>Skills and confidence level</caption>
-            <thead>
-              <tr>
-                <th scope="col">Skill</th>
-                <th scope="col">Level</th>
-                <th scope="col">Notes</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">HTML</th>
-                <td>Beginner</td>
-                <td>Learning structure</td>
-              </tr>
-              <tr>
-                <th scope="row">Web Creation</th>
-                <td>Beginner</td>
-                <td>Working on creativity</td>
-              </tr>
-              <tr>
-                <th scope="row">Networking</th>
-                <td>Intermediate</td>
-                <td>IP and troubleshooting</td>
-              </tr>
-            </tbody>
-            <tfoot>
-              <tr>
-                <td colspan="3">My levels will be updated when I feel more comfortable with the material.</td>
-              </tr>
-            </tfoot>
-          </table>
+      <div
+        id="skillsCollapseOne"
+        class="accordion-collapse collapse"
+        aria-labelledby="skillsHeadingOne"
+        data-bs-parent="#skillsAccordion"
+      >
+        <div class="accordion-body">
+
+          <ul class="pill-list">
+            <li class="pill">HTML structure and organization</li>
+            <li class="pill">Problem solving</li>
+            <li class="pill">Networking fundamentals</li>
+            <li class="pill">Leadership</li>
+          </ul>
+
         </div>
-      </section>
+      </div>
+    </div>
+
+    <!-- More Details -->
+    <div class="accordion-item bg-dark text-light border-0">
+      <h3 class="accordion-header" id="skillsHeadingTwo">
+        <button
+          class="accordion-button collapsed bg-dark text-light"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#skillsCollapseTwo"
+          aria-expanded="false"
+          aria-controls="skillsCollapseTwo"
+        >
+          More Details
+        </button>
+      </h3>
+
+      <div
+        id="skillsCollapseTwo"
+        class="accordion-collapse collapse"
+        aria-labelledby="skillsHeadingTwo"
+        data-bs-parent="#skillsAccordion"
+      >
+        <div class="accordion-body">
+
+          <details class="details">
+            <summary>More details</summary>
+            <p>
+              I’m practicing elements like <code>header</code>, <code>nav</code>, and <code>section</code>.
+            </p>
+            <p>
+              Example: 2<sup>3</sup> = 8 | H<sub>2</sub>O
+            </p>
+          </details>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Skills Table -->
+    <div class="accordion-item bg-dark text-light border-0">
+      <h3 class="accordion-header" id="skillsHeadingThree">
+        <button
+          class="accordion-button collapsed bg-dark text-light"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#skillsCollapseThree"
+          aria-expanded="false"
+          aria-controls="skillsCollapseThree"
+        >
+          Skills Table
+        </button>
+      </h3>
+
+      <div
+        id="skillsCollapseThree"
+        class="accordion-collapse collapse"
+        aria-labelledby="skillsHeadingThree"
+        data-bs-parent="#skillsAccordion"
+      >
+        <div class="accordion-body">
+
+          <div class="table-wrap" aria-label="Skills table container">
+            <table class="data-table">
+              <caption>Skills and confidence level</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Skill</th>
+                  <th scope="col">Level</th>
+                  <th scope="col">Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">HTML</th>
+                  <td>Beginner</td>
+                  <td>Learning structure</td>
+                </tr>
+                <tr>
+                  <th scope="row">Web Creation</th>
+                  <td>Beginner</td>
+                  <td>Working on creativity</td>
+                </tr>
+                <tr>
+                  <th scope="row">Networking</th>
+                  <td>Intermediate</td>
+                  <td>IP and troubleshooting</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="3">My levels will be updated when I feel more comfortable with the material.</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+ </section>
+
 
       <section id="projects" class="panel">
         <h2 class="panel-title">My Projects</h2>
@@ -310,5 +424,21 @@ GitHub Pages URL: ____________________
       </p>
     </footer>
   </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="scripts/main.js" defer></script>
+  <div class="modal fade" id="contactModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content bg-dark text-light">
+      <div class="modal-header border-0">
+        <h5 class="modal-title">Message Sent</h5>
+        <button type="button" class="btn-close btn-close-white"
+                data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        Thank you for reaching out! This is a demo message.
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>

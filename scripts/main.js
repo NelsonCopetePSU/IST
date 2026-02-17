@@ -79,28 +79,24 @@ GitHub Pages URL: ____________________
     sections.forEach((sec) => obs.observe(sec));
   }
 
-  // 4) Contact form feedback (no refresh)
-  const form = document.querySelector("form.contact-form");
-  if (form) {
-    let status = document.getElementById("form-status");
-
-    // If you didn't add it in HTML, we create it
-    if (!status) {
-      status = document.createElement("p");
-      status.id = "form-status";
-      status.className = "form-status";
-      status.setAttribute("aria-live", "polite");
-      form.insertAdjacentElement("afterend", status);
-    }
-
-    form.addEventListener("submit", (e) => {
+  // 4) Contact form submit -> show Bootstrap modal (no refresh)
+  const contactForm = document.querySelector("form.contact-form");
+  if (contactForm) {
+    contactForm.addEventListener("submit", (e) => {
       e.preventDefault();
 
-      const nameInput = document.getElementById("name");
-      const name = nameInput && nameInput.value.trim() ? nameInput.value.trim() : "there";
+      const modalEl = document.getElementById("contactModal");
 
-      status.textContent = `Thanks, ${name}! Your message was captured for this demo (no email is sent).`;
-      form.reset();
+      // If modal isn't on the page, do nothing (prevents errors)
+      if (!modalEl || typeof bootstrap === "undefined") {
+        alert("Form submitted (demo). Add the Bootstrap modal + bundle script to enable the popup.");
+        contactForm.reset();
+        return;
+      }
+
+      const modal = new bootstrap.Modal(modalEl);
+      modal.show();
+      contactForm.reset();
     });
   }
 
@@ -131,3 +127,4 @@ GitHub Pages URL: ____________________
     if (topEl) topEl.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 })();
+
