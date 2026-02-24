@@ -30,31 +30,36 @@ GitHub Pages URL: ____________________
     });
   });
 
-  // 2) Collapsible panels (click the H2 title)
-  const panels = document.querySelectorAll("section.panel");
+  // Collapsible panels (except Skills section)
+ const panels = document.querySelectorAll("section.panel");
 
-  panels.forEach((panel) => {
-    const title = panel.querySelector(".panel-title");
-    if (!title) return;
+ panels.forEach((panel) => {
+  // Skip the Skills section
+  if (panel.id === "skills") {
+    return;
+  }
 
-    title.setAttribute("role", "button");
-    title.setAttribute("tabindex", "0");
-    title.setAttribute("aria-expanded", "true");
+  const title = panel.querySelector(".panel-title");
+  if (!title) return;
 
-    const togglePanel = () => {
-      const collapsed = panel.classList.toggle("is-collapsed");
-      title.setAttribute("aria-expanded", String(!collapsed));
-    };
+  title.setAttribute("role", "button");
+  title.setAttribute("tabindex", "0");
+  title.setAttribute("aria-expanded", "true");
 
-    title.addEventListener("click", togglePanel);
+  const togglePanel = () => {
+    const collapsed = panel.classList.toggle("is-collapsed");
+    title.setAttribute("aria-expanded", String(!collapsed));
+  };
 
-    title.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        togglePanel();
-      }
-    });
+  title.addEventListener("click", togglePanel);
+
+  title.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      togglePanel();
+    }
   });
+ });
 
   // 3) Active nav highlight on scroll
   const linkMap = new Map();
