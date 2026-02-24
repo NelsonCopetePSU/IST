@@ -10,22 +10,39 @@ GitHub Pages URL: ____________________
 
 (() => {
   "use strict";
+
+  // Grab nav links once (needed for multiple features)
+  const navLinks = document.querySelectorAll(".nav-link");
+
   // 1) Smooth scroll for nav links
+  navLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      const href = link.getAttribute("href");
+
+      // Only do smooth scroll for #section links
+      if (href && href.startsWith("#")) {
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+    });
+  });
+
+  // 2) Collapsible panels (click the H2 title)
   const panels = document.querySelectorAll("section.panel");
 
   panels.forEach((panel) => {
     const title = panel.querySelector(".panel-title");
-    const content = panel.querySelector(".panel-content");
+    if (!title) return;
 
-    if (!title || !content) return;
     title.setAttribute("role", "button");
     title.setAttribute("tabindex", "0");
     title.setAttribute("aria-expanded", "true");
 
     const togglePanel = () => {
       const collapsed = panel.classList.toggle("is-collapsed");
-
-      content.style.display = collapsed ? "none" : "block";
       title.setAttribute("aria-expanded", String(!collapsed));
     };
 
@@ -38,8 +55,6 @@ GitHub Pages URL: ____________________
       }
     });
   });
- })();
-
 
   // 3) Active nav highlight on scroll
   const linkMap = new Map();
@@ -52,6 +67,7 @@ GitHub Pages URL: ____________________
   }
 
   const sections = Array.from(document.querySelectorAll("main .panel[id]"));
+
   if ("IntersectionObserver" in window) {
     const obs = new IntersectionObserver(
       (entries) => {
@@ -77,9 +93,8 @@ GitHub Pages URL: ____________________
 
       const modalEl = document.getElementById("contactModal");
 
-      // If modal isn't on the page, do nothing (prevents errors)
       if (!modalEl || typeof bootstrap === "undefined") {
-        alert("Form submitted (demo). Add the Bootstrap modal + bundle script to enable the popup.");
+        alert("Form submitted (demo).");
         contactForm.reset();
         return;
       }
