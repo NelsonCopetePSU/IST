@@ -85,25 +85,28 @@ GitHub Pages URL: ____________________
     sections.forEach((sec) => obs.observe(sec));
   }
 
-  // 4) Contact form submit -> show Bootstrap modal (no refresh)
-  const contactForm = document.querySelector("form.contact-form");
-  if (contactForm) {
-    contactForm.addEventListener("submit", (e) => {
-      e.preventDefault();
+  // Contact form submit -> show popup only if all fields are filled
+const contactForm = document.querySelector("form.contact-form");
 
-      const modalEl = document.getElementById("contactModal");
+if (contactForm) {
+  contactForm.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-      if (!modalEl || typeof bootstrap === "undefined") {
-        alert("Form submitted (demo).");
-        contactForm.reset();
-        return;
-      }
+    // Get form values
+    const name = contactForm.querySelector("input[type='text']").value.trim();
+    const email = contactForm.querySelector("input[type='email']").value.trim();
+    const topic = contactForm.querySelector("select").value.trim();
+    const message = contactForm.querySelector("textarea").value.trim();
 
-      const modal = new bootstrap.Modal(modalEl);
-      modal.show();
+    // Check if all fields are filled
+    if (name && email && topic && message) {
+      alert("Message Sent\n\nThank you for reaching out! This is a demo message.");
       contactForm.reset();
-    });
-  }
+    } else {
+      alert("Please fill out all fields before submitting.");
+    }
+  });
+}
 
   // 5) Back-to-top button (created automatically)
   let backToTop = document.getElementById("back-to-top");
